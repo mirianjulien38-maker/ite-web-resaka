@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="mg" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoraShop - Ny tsenanao amin'ny tsindry iray monja</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        whatsapp: '#25D366'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #22c55e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #16a34a;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-gray-950/80 transition-colors duration-300">
+        <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-2">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-500 text-white shadow-lg shadow-primary-500/30">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-gray-900 dark:text-white">Mora<span class="text-primary-500">Shop</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-semibold text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">Fandraisana</a>
+                <a href="#vokatra" class="text-sm font-semibold text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">Ny Vokatra</a>
+                <a href="#fiasa" class="text-sm font-semibold text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">Fomba fiasa</a>
+                <a href="#fifandraisana" class="text-sm font-semibold text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">Fifandraisana</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="rounded-full p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle Dark Mode">
+                    <i id="dark-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative rounded-full p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors" aria-label="Open Cart">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 hidden h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">0</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="rounded-full p-2 text-gray-500 hover:bg-gray-100 md:hidden dark:text-gray-400 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle Menu">
+                    <i id="menu-icon" class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden border-b border-gray-200 bg-white px-4 py-4 dark:border-gray-800 dark:bg-gray-950 md:hidden transition-all duration-300">
+            <nav class="flex flex-col gap-4">
+                <a href="#home" onclick="toggleMobileMenu()" class="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-primary-500">Fandraisana</a>
+                <a href="#vokatra" onclick="toggleMobileMenu()" class="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-primary-500">Ny Vokatra</a>
+                <a href="#fiasa" onclick="toggleMobileMenu()" class="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-primary-500">Fomba fiasa</a>
+                <a href="#fifandraisana" onclick="toggleMobileMenu()" class="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-primary-500">Fifandraisana</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-primary-50/50 via-transparent to-transparent dark:from-primary-950/20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+                <!-- Text Content -->
+                <div class="flex flex-col justify-center text-center lg:text-left">
+                    <span class="inline-flex items-center gap-1.5 self-center lg:self-start rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700 dark:bg-primary-950/50 dark:text-primary-400">
+                        <i class="fa-solid fa-bolt"></i> Delivery haingana manerana an'i Madagasikara
+                    </span>
+                    <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl dark:text-white">
+                        Mividiana amin'ny fomba tsotra, mandoa amin'ny <span class="text-primary-500">WhatsApp</span>
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto lg:mx-0">
+                        Safidio ny vokatra tianao, arotsahy ao anaty sobika, ary alefaso mivantana amin'ny WhatsApp ny baikonao. Tsotra, haingana ary azo antoka!
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="#vokatra" class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/20 hover:bg-primary-600 transition-all transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-basket-shopping"></i> Hijery ny Vokatra
+                        </a>
+                        <a href="#fiasa" class="inline-flex items-center justify-center gap-2 rounded-xl bg-white border border-gray-300 px-6 py-3.5 text-base font-semibold text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-700/50 transition-all">
+                            Hahafantatra bebe kokoa <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Image Grid -->
+                <div class="relative">
+                    <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary-500 to-emerald-500 opacity-30 blur-2xl"></div>
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1000" alt="MoraShop Shopping" class="w-full h-[450px] object-cover object-center transform hover:scale-105 transition duration-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="py-16 bg-white dark:bg-gray-950 transition-colors duration-300">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Feature 1 -->
+                <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 dark:border-gray-800 hover:shadow-xl transition-all">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-primary-600 dark:bg-primary-950/50 dark:text-primary-400 mb-4">
+                        <i class="fa-solid fa-truck text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Delivery Haingana</h3>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Taterina any amin'ny toerana misy anao ny entana ao anatin'ny fotoana fohy indrindra.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 dark:border-gray-800 hover:shadow-xl transition-all">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400 mb-4">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Paiement WhatsApp</h3>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Mora ny fifampiraharahana. Rehefa mifidy ianao dia alefa mivantana amin'ny WhatsApp.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 dark:border-gray-800 hover:shadow-xl transition-all">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-950/50 dark:text-amber-400 mb-4">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Azo Antoka 100%</h3>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Vokatra tsara kalitao ary voamarina mialoha ny handefasana azy.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 dark:border-gray-800 hover:shadow-xl transition-all">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400 mb-4">
+                        <i class="fa-solid fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Mpanampy Vonona</h3>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Afaka manontany sy mila torohevitra amin'ny fotoana rehetra ianao.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="vokatra" class="py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <!-- Header section -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Ireo Vokatra Misy Ao Aminay</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Safidio ny vokatra tianao ary tsindrio ny bokotra "Hividy" mba handefasana izany any amin'ny sobika.</p>
+            </div>
+
+            <!-- Filters & Search -->
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between mb-10">
+                <!-- Categories -->
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <button onclick="filterProducts('all')" class="category-btn active rounded-full px-5 py-2 text-sm font-semibold transition-all bg-primary-500 text-white shadow-md">Rehetra</button>
+                    <button onclick="filterProducts('tech')" class="category-btn rounded-full px-5 py-2 text-sm font-semibold transition-all bg-white text-gray-700 border border-gray-200 hover:border-primary-500 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">Teknolojia</button>
+                    <button onclick="filterProducts('fashion')" class="category-btn rounded-full px-5 py-2 text-sm font-semibold transition-all bg-white text-gray-700 border border-gray-200 hover:border-primary-500 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">Fitafiana</button>
+                    <button onclick="filterProducts('home')" class="category-btn rounded-full px-5 py-2 text-sm font-semibold transition-all bg-white text-gray-700 border border-gray-200 hover:border-primary-500 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">Trano & Haingo</button>
+                </div>
+                <!-- Search bar -->
+                <div class="relative w-full md:w-80">
+                    <input type="text" id="search-input" oninput="searchProducts()" placeholder="Hikaroka vokatra..." class="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-2.5 text-sm outline-none focus:border-primary-500 dark:border-gray-800 dark:bg-gray-950 dark:focus:border-primary-500">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <!-- Dynamic Content via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section id="fiasa" class="py-20 bg-gray-100 dark:bg-gray-950 transition-colors duration-300">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Ahoana ny Fomba Fiasa?</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Tsotra kely ny fividianana entana eto aminay. Tsy mila taratasy be pitsiny!</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-12 md:grid-cols-3 relative">
+                <!-- Background Line (Desktop) -->
+                <div class="hidden md:block absolute top-1/4 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-primary-500 to-emerald-500 z-0 w-2/3 mx-auto"></div>
+
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center text-center relative z-10">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary-500 text-white font-extrabold text-2xl shadow-lg shadow-primary-500/30 mb-6">1</div>
+                    <h3 class="text-xl font-bold">Safidio ny Vokatra</h3>
+                    <p class="mt-3 text-sm text-gray-500 dark:text-gray-400 max-w-xs">Tadiavo sy safidio ireo vokatra tianao hovidina ao amin'ny tsenanay.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center text-center relative z-10">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary-500 text-white font-extrabold text-2xl shadow-lg shadow-primary-500/30 mb-6">2</div>
+                    <h3 class="text-xl font-bold">Hamarino ny Sobika</h3>
+                    <p class="mt-3 text-sm text-gray-500 dark:text-gray-400 max-w-xs">Sokafy ny sobika (Cart) mba hanamarinana ny isan'ny entana sy ny vidiny manontolo.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center text-center relative z-10">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary-500 text-white font-extrabold text-2xl shadow-lg shadow-primary-500/30 mb-6">3</div>
+                    <h3 class="text-xl font-bold">Alefaso amin'ny WhatsApp</h3>
+                    <p class="mt-3 text-sm text-gray-500 dark:text-gray-400 max-w-xs">Tsindrio ny bokotra handefasana ny baiko. Hifandray mivantana aminao izahay amin'ny WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="fifandraisana" class="py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
+                <!-- Info -->
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Mila Fanampiana ve Ianao?</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                        Raha manana fanontaniana momba ny vokatra na ny fomba fandefasana ianao dia aza misalasala mifandray aminay mivantana.
+                    </p>
+
+                    <div class="mt-8 space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-primary-600 dark:bg-primary-950/50 dark:text-primary-400">
+                                <i class="fa-solid fa-phone text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400">Laharana finday</h4>
+                                <p class="text-base font-semibold">+261 34 00 000 00</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-primary-600 dark:bg-primary-950/50 dark:text-primary-400">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400">Imailaka</h4>
+                                <p class="text-base font-semibold">fifandraisana@morashop.mg</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-primary-600 dark:bg-primary-950/50 dark:text-primary-400">
+                                <i class="fa-solid fa-location-dot text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400">Toerana misy anay</h4>
+                                <p class="text-base font-semibold">Analakely, Antananarivo, Madagascar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="rounded-3xl border border-gray-100 bg-white p-8 shadow-xl dark:border-gray-800 dark:bg-gray-950">
+                    <h3 class="text-2xl font-bold mb-6">Handefa hafatra</h3>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                        <div>
+                            <label for="contact-name" class="block text-sm font-semibold mb-2">Anarana feno</label>
+                            <input type="text" id="contact-name" required class="w-full rounded-xl border border-gray-200 bg-transparent px-4 py-3 text-sm outline-none focus:border-primary-500 dark:border-gray-800 dark:focus:border-primary-500">
+                        </div>
+                        <div>
+                            <label for="contact-phone" class="block text-sm font-semibold mb-2">Laharana finday</label>
+                            <input type="tel" id="contact-phone" required class="w-full rounded-xl border border-gray-200 bg-transparent px-4 py-3 text-sm outline-none focus:border-primary-500 dark:border-gray-800 dark:focus:border-primary-500">
+                        </div>
+                        <div>
+                            <label for="contact-message" class="block text-sm font-semibold mb-2">Hafatra tiana hampitaina</label>
+                            <textarea id="contact-message" rows="4" required class="w-full rounded-xl border border-gray-200 bg-transparent px-4 py-3 text-sm outline-none focus:border-primary-500 dark:border-gray-800 dark:focus:border-primary-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full rounded-xl bg-primary-500 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-500/20 hover:bg-primary-600 transition-all">
+                            Handefa Hafatra
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-200 bg-white py-12 dark:border-gray-800 dark:bg-gray-950 transition-colors duration-300">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+                <a href="#home" class="flex items-center gap-2">
+                    <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500 text-white">
+                        <i class="fa-solid fa-bag-shopping text-sm"></i>
+                    </div>
+                    <span class="text-lg font-extrabold tracking-tight">Mora<span class="text-primary-500">Shop</span></span>
+                </a>
+                <p class="text-sm text-gray-500 dark:text-gray-400">&copy; <span id="current-year"></span> MoraShop. Zo rehetra voatokana.</p>
+                <div class="flex gap-4">
+                    <a href="javascript:void(0)" class="text-gray-400 hover:text-primary-500"><i class="fa-brands fa-facebook text-lg"></i></a>
+                    <a href="javascript:void(0)" class="text-gray-400 hover:text-primary-500"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="javascript:void(0)" class="text-gray-400 hover:text-primary-500"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART PANEL (SIDEBAR) -->
+    <div id="cart-panel" class="fixed inset-y-0 right-0 z-50 w-full max-w-md translate-x-full transform bg-white shadow-2xl dark:bg-gray-950 transition-transform duration-300 ease-in-out border-l border-gray-200 dark:border-gray-800">
+        <div class="flex h-full flex-col">
+            <!-- Cart Header -->
+            <div class="flex items-center justify-between border-b border-gray-200 px-4 py-6 dark:border-gray-800">
+                <h3 class="text-lg font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-basket-shopping text-primary-500"></i> Ny Sobikanao
+                </h3>
+                <button onclick="toggleCart()" class="rounded-full p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items -->
+            <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Dynamic Cart Items via JavaScript -->
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="border-t border-gray-200 p-4 dark:border-gray-800">
+                <div class="flex justify-between text-base font-bold mb-4">
+                    <span>Vidiny manontolo:</span>
+                    <span id="cart-total" class="text-primary-500">0 Ar</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full flex items-center justify-center gap-2 rounded-xl bg-whatsapp py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-600 transition-all">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Handefa baiko amin'ny WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK VIEW MODAL -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="relative w-full max-w-2xl rounded-3xl bg-white p-6 shadow-2xl dark:bg-gray-950 border border-gray-100 dark:border-gray-800">
+            <button onclick="closeQuickView()" class="absolute right-4 top-4 rounded-full p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="quickview-content" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <!-- Dynamic content via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL (CONTACT) -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl dark:bg-gray-950 border border-gray-100 dark:border-gray-800">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-primary-600 dark:bg-primary-950/50 dark:text-primary-400 mb-4">
+                <i class="fa-solid fa-check text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold">Hafatra lasa soa aman-tsara!</h3>
+            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Misaotra anao nifandray taminay. Hiverina aminao haingana izahay.</p>
+            <button onclick="closeSuccessModal()" class="mt-6 w-full rounded-xl bg-primary-500 py-3 text-white font-semibold hover:bg-primary-600 transition-all">
+                Misaotra
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // WhatsApp number (replace with your real number in Madagascar format e.g. 261340000000)
+        const WHATSAPP_NUMBER = "261340000000";
+
+        // Vokatra Data (Real-looking Malagasy market products)
+        const products = [
+            {
+                id: 1,
+                name: "Smartphone Redmi Note 12",
+                price: 850000,
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&q=80&w=600",
+                description: "Smartphone matanjaka misy RAM 8GB ary fitahirizana 128GB. Sary tena mazava tsara ary bateria maharitra."
+            },
+            {
+                id: 2,
+                name: "Ecouteurs Sans Fil Pro",
+                price: 120000,
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=600",
+                description: "Ecouteurs Bluetooth misy fampihenana feo avy any ivelany (ANC). Tsara feo bass ary maharitra 5 ora."
+            },
+            {
+                id: 3,
+                name: "Smartwatch Series 8",
+                price: 180000,
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=600",
+                description: "Famantaranandro maritira mandrefy fitepon'ny fo, dingana vita, ary mampiseho fampandrenesana avy amin'ny finday."
+            },
+            {
+                id: 4,
+                name: "Paletò ririnina tsara tarehy",
+                price: 75000,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=600",
+                description: "Paletò mafana tsara sy manara-penitra, mety ho an'ny lehilahy sy vehivavy. Misy habe rehetra."
+            },
+            {
+                id: 5,
+                name: "Kapa hoditra tsotra",
+                price: 45000,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&q=80&w=600",
+                description: "Kapa vita amin'ny hoditra natoraly tena mateza, mety amin'ny andavanandro."
+            },
+            {
+                id: 6,
+                name: "Fitaratra masoandro (Sunglasses)",
+                price: 35000,
+                category: "fashion",
+                image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=600",
+                description: "Fitaratra miaro amin'ny taratra UV, tsara endrika sady miaro ny maso."
+            },
+            {
+                id: 7,
+                name: "Jiro LED ravaka anatiny",
+                price: 25000,
+                category: "home",
+                image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&q=80&w=600",
+                description: "Jiro miloko maro handravahana ny efitranonao. Misy télécommande handrindrana ny loko."
+            },
+            {
+                id: 8,
+                name: "Fandriana sy ondana haingo",
+                price: 95000,
+                category: "home",
+                image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=600",
+                description: "Ondana malefaka sy tsara tarehy handravahana ny seza na fandrianao."
+            }
+        ];
+
+        // Cart State
+        let cart = [];
+
+        // App Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts('all');
+            document.getElementById('current-year').innerText = new Date().getFullYear();
+        });
+
+        // Dark Mode Logic
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const darkIcon = document.getElementById('dark-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                darkIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                html.classList.add('dark');
+                darkIcon.className = 'fa-solid fa-sun text-lg';
+            }
+        }
+
+        // Mobile Menu Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark text-lg';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars text-lg';
+            }
+        }
+
+        // Render Products
+        function renderProducts(category, search = '') {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            const filtered = products.filter(p => {
+                const matchesCategory = category === 'all' || p.category === category;
+                const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fa-solid fa-box-open text-4xl text-gray-400 mb-4"></i>
+                        <p class="text-gray-500">Tsy misy vokatra mifanaraka amin'ny fikarohanao.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-950 transition-all hover:shadow-xl';
+                card.innerHTML = `
+                    <div class="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-900">
+                        <img src="${p.image}" alt="${p.name}" class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 flex items-center justify-center gap-2 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button onclick="openQuickView(${p.id})" class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-900 shadow hover:bg-gray-100 transition-transform hover:scale-110">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-1 flex-col p-4">
+                        <span class="text-xs font-semibold text-primary-500 uppercase tracking-wider">${p.category === 'tech' ? 'Teknolojia' : p.category === 'fashion' ? 'Fitafiana' : 'Trano & Haingo'}</span>
+                        <h3 class="mt-1 text-base font-bold text-gray-900 dark:text-white line-clamp-1">${p.name}</h3>
+                        <p class="mt-2 text-lg font-extrabold text-primary-600 dark:text-primary-400">${p.price.toLocaleString('mg-MG')} Ar</p>
+                        <div class="mt-auto pt-4">
+                            <button onclick="addToCart(${p.id})" class="w-full flex items-center justify-center gap-2 rounded-xl bg-primary-500 py-2.5 text-sm font-semibold text-white hover:bg-primary-600 transition-all active:scale-95">
+                                <i class="fa-solid fa-cart-plus"></i> Hividy
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Products (UI Activation)
+        function filterProducts(category) {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-primary-500', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200', 'dark:bg-gray-800', 'dark:text-gray-300', 'dark:border-gray-700');
+            });
+            event.target.classList.add('bg-primary-500', 'text-white', 'shadow-md');
+            event.target.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200', 'dark:bg-gray-800', 'dark:text-gray-300', 'dark:border-gray-700');
+            
+            const searchVal = document.getElementById('search-input').value;
+            renderProducts(category, searchVal);
+        }
+
+        // Search Products
+        function searchProducts() {
+            const activeCategoryBtn = document.querySelector('.category-btn.bg-primary-500');
+            const category = activeCategoryBtn ? activeCategoryBtn.textContent.toLowerCase() : 'all';
+            let catKey = 'all';
+            if (category.includes('teknolojia')) catKey = 'tech';
+            if (category.includes('fitafiana')) catKey = 'fashion';
+            if (category.includes('trano')) catKey = 'home';
+
+            const searchVal = document.getElementById('search-input').value;
+            renderProducts(catKey, searchVal);
+        }
+
+        // Cart Actions
+        function toggleCart() {
+            const panel = document.getElementById('cart-panel');
+            panel.classList.toggle('translate-x-full');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.product.id === id);
+
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ product, quantity: 1 });
+            }
+
+            updateCartUI();
+            // Optional: open the cart sidebar automatically when item is added
+            const panel = document.getElementById('cart-panel');
+            if (panel.classList.contains('translate-x-full')) {
+                panel.classList.remove('translate-x-full');
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.product.id !== id);
+            updateCartUI();
+        }
+
+        function updateQuantity(id, amount) {
+            const item = cart.find(item => item.product.id === id);
+            if (item) {
+                item.quantity += amount;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.getElementById('cart-items');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartTotal = document.getElementById('cart-total');
+
+            cartContainer.innerHTML = '';
+            let total = 0;
+            let totalItems = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-64 text-center">
+                        <i class="fa-solid fa-cart-arrow-down text-4xl text-gray-300 mb-2"></i>
+                        <p class="text-gray-500">Foana ny sobikanao.</p>
+                    </div>
+                `;
+                cartBadge.classList.add('hidden');
+                cartTotal.innerText = '0 Ar';
+                return;
+            }
+
+            cart.forEach(item => {
+                total += item.product.price * item.quantity;
+                totalItems += item.quantity;
+
+                const itemEl = document.createElement('div');
+                itemEl.className = 'flex items-center gap-4 rounded-xl border border-gray-100 p-3 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50';
+                itemEl.innerHTML = `
+                    <img src="${item.product.image}" alt="${item.product.name}" class="h-16 w-16 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white line-clamp-1">${item.product.name}</h4>
+                        <p class="text-sm font-semibold text-primary-500">${item.product.price.toLocaleString('mg-MG')} Ar</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <button onclick="updateQuantity(${item.product.id}, -1)" class="flex h-6 w-6 items-center justify-center rounded bg-gray-200 dark:bg-gray-800 text-xs font-bold hover:bg-gray-300">-</button>
+                            <span class="text-xs font-bold">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.product.id}, 1)" class="flex h-6 w-6 items-center justify-center rounded bg-gray-200 dark:bg-gray-800 text-xs font-bold hover:bg-gray-300">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.product.id})" class="text-gray-400 hover:text-red-500">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                `;
+                cartContainer.appendChild(itemEl);
+            });
+
+            cartBadge.innerText = totalItems;
+            cartBadge.classList.remove('hidden');
+            cartTotal.innerText = `${total.toLocaleString('mg-MG')} Ar`;
+        }
+
+        // WhatsApp Checkout
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Foana ny sobikanao. Mifidiana vokatra aloha tompoko!");
+                return;
+            }
+
+            let message = "Salama MoraShop! Te hanafatra ireto vokatra ireto aho:\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const subtotal = item.product.price * item.quantity;
+                total += subtotal;
+                message += `${index + 1}. *${item.product.name}*\n`;
+                message += `   Isany: ${item.quantity} x ${item.product.price.toLocaleString('mg-MG')} Ar\n`;
+                message += `   Subtotal: *${subtotal.toLocaleString('mg-MG')} Ar*\n\n`;
+            });
+
+            message += `-----------------------------\n`;
+            message += `*Vidiny manontolo: ${total.toLocaleString('mg-MG')} Ar*\n\n`;
+            message += `Mba ampahafantaro ahy ny mombamomba ny fandefasana. Misaotra!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Quick View Modal
+        function openQuickView(id) {
+            const product = products.find(p => p.id === id);
+            const content = document.getElementById('quickview-content');
+
+            content.innerHTML = `
+                <div class="overflow-hidden rounded-2xl bg-gray-100 dark:bg-gray-900">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-64 md:h-full object-cover">
+                </div>
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-primary-500 uppercase tracking-wider">${product.category === 'tech' ? 'Teknolojia' : product.category === 'fashion' ? 'Fitafiana' : 'Trano & Haingo'}</span>
+                        <h3 class="text-2xl font-extrabold mt-2">${product.name}</h3>
+                        <p class="text-xl font-extrabold text-primary-500 mt-2">${product.price.toLocaleString('mg-MG')} Ar</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-4 leading-relaxed">${product.description}</p>
+                    </div>
+                    <div class="mt-6 flex gap-4">
+                        <button onclick="addToCart(${product.id}); closeQuickView();" class="flex-1 flex items-center justify-center gap-2 rounded-xl bg-primary-500 py-3 text-sm font-semibold text-white hover:bg-primary-600 transition-all">
+                            <i class="fa-solid fa-cart-plus"></i> Arotsaka anaty sobika
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('quickview-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickview-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Contact Form Handling
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            // Clear input fields
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-phone').value = '';
+            document.getElementById('contact-message').value = '';
+            
+            // Show success modal
+            const successModal = document.getElementById('success-modal');
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
+        }
+
+        function closeSuccessModal() {
+            const successModal = document.getElementById('success-modal');
+            successModal.classList.add('hidden');
+            successModal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
